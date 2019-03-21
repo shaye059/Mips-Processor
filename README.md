@@ -1,1 +1,7 @@
 # Mips-Processor
+
+This project is a 32-bit instruction/8-bit data single cycle MIPS processor. The top level entity is SingleCycleProc.vhd. The inputs include a 3 bit value select, to choose which 8-bit value is output (more documentation will be added listing the options in the coming weeks), as well as a global clock and a negative global reset. To start a simulation, the 3-bit value should be chosen (000 represents the output of the program counter and is what has been used for most testing), the global reset should be set to 0, and a clock should be connected to the global clock input.
+
+The minimum clock cycle time has yet to be calculated, so for testing purposes we used a large value of 100ns to ensure that all propagation delays were encapsulated. The global reset should be left at 0 for 2 clock cycles and then it can be set to 1. AT this point the program loaded into the instruction memory will begin to execute. The instruction memory and data memory are read from hex files for ModelSim simulation. More documentation on the current program will be uploaded shortly, however the instructions are standard 32-bit MIPS, stored in hex values, and therefore can be decoded by converting to binary and grouping the bits into their respective fields for each instruction.
+
+This project still has a few bugs, specifically with storing instructions, which are currently being addressed. 
