@@ -62,9 +62,9 @@ BEGIN
 		address_aclr_a => "NONE",
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "./simulation/modelsim/instruction_mem.hex",
+		init_file => "C:/Users/spenc/Uni Third Year/CEG3156/Labs/Lab2 Quartus/simulation/modelsim/instruction_mem.hex",
 		intended_device_family => "Cyclone IV E",
-		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
+		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=NONE",
 		lpm_type => "altsyncram",
 		numwords_a => 256,
 		operation_mode => "ROM",
@@ -101,7 +101,7 @@ END SYN;
 -- Retrieval info: PRIVATE: INIT_FILE_LAYOUT STRING "PORT_A"
 -- Retrieval info: PRIVATE: INIT_TO_SIM_X NUMERIC "0"
 -- Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
--- Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
+-- Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "1"
 -- Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 -- Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
 -- Retrieval info: PRIVATE: MIFfilename STRING "./simulation/modelsim/instruction_mem.hex"
@@ -121,7 +121,7 @@ END SYN;
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
 -- Retrieval info: CONSTANT: INIT_FILE STRING "./simulation/modelsim/instruction_mem.hex"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
--- Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=NO"
+-- Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=NONE"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
 -- Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "256"
 -- Retrieval info: CONSTANT: OPERATION_MODE STRING "ROM"
