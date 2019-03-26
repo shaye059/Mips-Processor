@@ -64,7 +64,7 @@ BEGIN
 	GENERIC MAP (
 		clock_enable_input_a => "BYPASS",
 		clock_enable_output_a => "BYPASS",
-		init_file => "C:/Users/spenc/Uni Third Year/CEG3156/Labs/Lab2 Quartus/simulation/modelsim/data_mem.hex",
+		init_file => "data_mem.hex",
 		intended_device_family => "Cyclone IV E",
 		lpm_hint => "ENABLE_RUNTIME_MOD=NO",
 		lpm_type => "altsyncram",
