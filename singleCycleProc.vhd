@@ -40,7 +40,8 @@ entity singleCycleProc is
 	signal INSTRUCTION_OUT : STD_LOGIC_VECTOR(31 DOWNTO 0);
 	signal WRITE_REG_IN : STD_LOGIC_VECTOR(4 DOWNTO 0);
 	signal ALU_CONTROL_OUT : STD_LOGIC_VECTOR(2 DOWNTO 0);
-	signal RegDST, REG_WRITE_SIG, ALUSrc, ZERO_SIG, MemWrite, BRANCH_ZERO_SIG, Jump, MemToReg, ALUOp, BRANCH, MemRead, InvertedClock: STD_LOGIC;
+	signal RegDST, REG_WRITE_SIG, ALUSrc, ZERO_SIG, MemWrite, BRANCH_ZERO_SIG, Jump, MemToReg, BRANCH, MemRead, InvertedClock: STD_LOGIC;
+	signal ALUOp : STD_LOGIC_VECTOR(1 DOWNTO 0);
 	
 	
 -------------------------------------------------------------------------------
@@ -136,14 +137,15 @@ entity singleCycleProc is
 	component CONTROL_UNIT
 		port(
 		OPCODE_IN : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-		RegDst, Jump, Branch, MemToReg, ALUOp, MemWrite, ALUSrc, RegWrite, MemRead: OUT STD_LOGIC
+		RegDst, Jump, Branch, MemToReg, MemWrite, ALUSrc, RegWrite, MemRead : OUT STD_LOGIC;
+		ALUOp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
 		);
 
 	end component;
 	
 	component ALU_CONTROL
 		port(
-		ALUOp_IN : IN STD_LOGIC;
+		ALUOp_IN : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
 		INSTRUCTION_OP: IN STD_LOGIC_VECTOR(5 DOWNTO 0);
 		ALU_OP_OUT : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 		);
@@ -169,7 +171,7 @@ entity singleCycleProc is
 	begin
 	
 	--Program Counter
-	PC_REG : EIGHT_BIT_REG port map('1', GresetBar, GClock,PC_IN, PC_OUT);
+	PC_REG : EIGHT_BIT_REG port map('1', GresetBar, InvertedClock,PC_IN, PC_OUT);
 	
 	--Instruction Memeory
 	MEM_ROM : instruction_mem port map(PC_OUT, GClock, INSTRUCTION_OUT);
@@ -212,7 +214,7 @@ entity singleCycleProc is
 	ALU_CNTRL : ALU_CONTROL port map(ALUOp, INSTRUCTION_OUT(5 DOWNTO 0), ALU_CONTROL_OUT);
 	
 	--Control Unit
-	CNTRL : CONTROL_UNIT port map(INSTRUCTION_OUT(31 DOWNTO 26), regDST, Jump, BRANCH, MemToReg, ALUOp, MemWrite, ALUSrc, REG_WRITE_SIG, MemRead);
+	CNTRL : CONTROL_UNIT port map(INSTRUCTION_OUT(31 DOWNTO 26), regDST, Jump, BRANCH, MemToReg, MemWrite, ALUSrc, REG_WRITE_SIG, MemRead, ALUOp);
 	
 	--CLock Inverter
 	INV : ClockInverter port map(GClock, InvertedClock);
@@ -229,8 +231,7 @@ entity singleCycleProc is
 	LAST_MUX_INPUT(5) <= Jump;
 	LAST_MUX_INPUT(4) <= MemRead;
 	LAST_MUX_INPUT(3) <= MemToReg;
-	LAST_MUX_INPUT(2) <= '0';
-	LAST_MUX_INPUT(1) <= ALUOP;
+	LAST_MUX_INPUT(2 DOWNTO 1) <= ALUOp;
 	LAST_MUX_INPUT(0) <= ALUSrc;
 	BRANCH_ZERO_SIG <= BRANCH AND ZERO_SIG;
 	InstructionOut <= INSTRUCTION_OUT;
