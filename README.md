@@ -4,6 +4,7 @@ This project is a 32-bit instruction/8-bit data single cycle MIPS processor. The
 
 The minimum clock cycle time has yet to be calculated, so for testing purposes we used a large value of 100ns to ensure that all propagation delays were encapsulated. The global reset should be left at 0 for 2 clock cycles and then it can be set to 1. AT this point the program loaded into the instruction memory will begin to execute. The instruction memory and data memory are read from hex files for ModelSim simulation. More documentation on the current program will be uploaded shortly, however the instructions are standard 32-bit MIPS, stored in hex values, and therefore can be decoded by converting to binary and grouping the bits into their respective fields for each instruction.
 
+Note: It is best to view this README file in RAW format when reading the next section
 
 The instructions executed in the current instruction memory are:
 lw $2, 0; ($t2=memory(00) = 55),
