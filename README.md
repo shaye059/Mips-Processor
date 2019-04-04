@@ -16,7 +16,7 @@ add $1, $2, $3; ($t1=$t2+$t3 = FF),
 sw $1, 4; (memory(04)=$t1 = FF),
 lw $2, 3; ($t2=memory(03) = FF),
 lw $3, 4; ($t3=memory(04) = FF),
-j 11; (jump to address 44),
+j 11; (jump forward 11 instructions from next instruction, to address 0x58),
 beq $1, $1, -44; (loop back to beginning of program)
 
 
